@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Azure 3 Tier Demo</title>
+</head>
+<body>
+
+<h2>Users</h2>
+<button onclick="loadUsers()">Load Users</button>
+
+<ul id="users"></ul>
+
+<script>
+async function loadUsers() {
+    const response = await fetch("https://YOUR-API.azurewebsites.net/users");
+    const data = await response.json();
+
+    const list = document.getElementById("users");
+    list.innerHTML = "";
+
+    data.forEach(user => {
+        const li = document.createElement("li");
+        li.textContent = user.name;
+        list.appendChild(li);
+    });
+}
+</script>
+
+</body>
+</html>
